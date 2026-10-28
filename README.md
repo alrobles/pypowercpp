@@ -60,7 +60,10 @@ Semantic notes:
   observations) yield `NaN`/`None` fields with `.valid == False` instead of
   raising, mirroring R's `NA` fields. Empty input and non-positive data raise.
 - Bound estimation is roughly `O(n_unique * n)` with vectorised inner steps
-  (`O(n²)` worst case for all-distinct data).
+  (`O(n²)` worst case for all-distinct data). Candidates are the unique
+  observed values (the R/C++ code scans every integer in range), so the
+  chosen bound can differ from R in razor-thin cases; each is the minimum
+  over its own candidate set.
 
 ## Tests and build
 
